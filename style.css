@@ -1,0 +1,29 @@
+html {
+	font-family: Arial;
+	color: #666;
+	font-size: 14px;
+}
+.calendar-week{
+	border: 1px solid;
+	padding: 5px;
+}
+.calendar-week-title{
+	border-bottom: 1px solid;
+	padding: 10px;
+}
+.calendar-week-title h1{
+	margin: 0;
+}
+ul.calendar-week-list, ul.calendar-week-list li{
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+.calendar-week-list-day{
+	margin: 5px;
+	padding: 10px;
+	border: 1px solid #CCC;
+}
+.calendar-week-list-day h4{
+	margin: 0;
+}
