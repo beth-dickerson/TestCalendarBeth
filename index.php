@@ -1,6 +1,5 @@
 <?php
 // $days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-$dayStart = "2016-08-07";
 $result = [
 	"2016-08-07" => [
 		"go to brunch", 
@@ -12,26 +11,37 @@ $result = [
 		],
 	"2016-08-10" => [
 		"rock climbing gym closes :("
+		],
+	"2016-09-06" => [
+		"cutting hair",
+		"vr roller coaster"
+		],
+	"2016-08-26" => [
+		"happy birthday, grandma!"
 		]
 ];
-
+// Get start of week
 /*
-$basicArray = ["red", "hi" => "green", "blue"];
-$basicArray[1];
-
-$fancyArray = ["color" => "red", "shape" => "circle"];
-$fancyArray["color"];
-
-function toItalics($word){
-	$word = "<em>" . $word . "</em>";
-	return $word;
-}
-$i = 0;
-// for($i = 0; $i < 7; $i = $i + 1)
-while($i < 7){
-	echo $days[$i++];
-}
+homework:
+1. make sure the GET value is the right date format (ex. y-m-d)
+2. make sure the default date is always on Sunday
 */
+if(isset($_GET["start"])){ 
+	$dayStart = $_GET["start"];
+} else {
+	$dayStart = date("Y-m-d");
+// get the numeric rep of the day of the week
+// get a new date by subtracting the prev number of days from today
+// make sure it's in the correct format Y-m-d	
+}
+$dayStartTimestamp = strtotime($dayStart);
+
+// Get next week
+$stamp = strtotime("$dayStart +1 week");
+$nextWeekDayStart = date("Y-m-d", $stamp);
+
+// Get previous week
+$prevWeekDayStart = date("Y-m-d", strtotime("$dayStart -1 week"));
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +55,8 @@ while($i < 7){
 			<div class="calendar-week-title">
 				<h1>This <?php echo ("Week");?></h1>
 			</div>
+			<a href="?start=<?php echo $nextWeekDayStart;?>">next week</a>
+			<a href="?start=<?php echo $prevWeekDayStart;?>">previous week</a>
 			<ul class="calendar-week-list">
 				<?php for($dayAdd = 0; $dayAdd < 7; $dayAdd++): 
 					// 2016-08-07 +1 days
